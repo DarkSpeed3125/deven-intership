@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const BrowseByCategory = () => {
   return (
@@ -7,12 +9,12 @@ const BrowseByCategory = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-down">
               <h2>Browse by category</h2>
-              <div className="small-border bg-color-2"></div>
+              <div className="small-border bg-color-2" data-aos="fade-up" data-aos-delay="150"></div>
             </div>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="zoom-in" data-aos-delay="100">
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-image"></i>
               <span>Art</span>
