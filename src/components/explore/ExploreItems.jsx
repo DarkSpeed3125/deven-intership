@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
 
 const Countdown = ({ expiryDate }) => {
-  const calculateRemaining = () => Math.max(0, Number(expiryDate) - Date.now());
+  const calculateRemaining = useCallback(() => Math.max(0, Number(expiryDate) - Date.now()), [expiryDate]);
   const [remaining, setRemaining] = useState(calculateRemaining);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Countdown = ({ expiryDate }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [expiryDate]);
+  }, [expiryDate, calculateRemaining]);
 
   if (remaining <= 0) {
     return <div className="de_countdown">Expired</div>;
