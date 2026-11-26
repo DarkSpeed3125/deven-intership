@@ -2,11 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!loading && !error && sellers.length > 0) {
+      Aos.refreshHard();
+    }
+  }, [loading, error, sellers]);
 
   useEffect(() => {
     const fetchSellers = async () => {
@@ -29,16 +37,16 @@ const TopSellers = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-down">
               <h2>Top Sellers</h2>
-              <div className="small-border bg-color-2"></div>
+              <div className="small-border bg-color-2" data-aos="fade-up" data-aos-delay="150"></div>
             </div>
           </div>
 
-          <div className="col-md-12">
+          <div className="col-md-12" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
             <ol className="author_list">
               {loading && new Array(12).fill(0).map((_,index) => (
-                <li key={index}>
+                <li key={index} data-aos="fade-up" data-aos-delay={(index % 6) * 100}>
                   <div className="author_list_pp">
                     <Skeleton width="45px" height="45px" borderRadius="50%" />
                   </div>
@@ -63,7 +71,7 @@ const TopSellers = () => {
                 </li>
               )}
 
-              {!loading && !error && sellers.map((seller) => (
+              {!loading && !error && sellers.map((seller, index) => (
                 <li key={seller.id}>
                   <div className="author_list_pp">
                     <Link to={`/author/${seller.authorId}`} title={`View ${seller.authorName}'s profile`}>

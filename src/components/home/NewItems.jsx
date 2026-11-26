@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 import $ from "jquery";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 window.$ = window.jQuery = $;
 require("owl.carousel");
@@ -97,9 +99,9 @@ const NewItems = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-down">
               <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
+              <div className="small-border bg-color-2" data-aos="fade-up" data-aos-delay="150"></div>
             </div>
           </div>
 
@@ -146,7 +148,7 @@ const NewItems = () => {
           )}
 
           {!loading && !error && items.length > 0 && (
-            <div className="col-lg-12">
+            <div className="col-lg-12" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
               <div className="owl-carousel" ref={carouselRef}>
                 {items.map((item) => (
                   <div className="item" key={item.id}>
