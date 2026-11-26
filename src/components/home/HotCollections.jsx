@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 import $ from "jquery"
-import Aos from "aos";
 import "aos/dist/aos.css";
 
 window.$ = window.jQuery = $;
